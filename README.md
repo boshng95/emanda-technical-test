@@ -93,7 +93,47 @@ When you're done, please submit:
 
 ---
 
-## Questions?
+## 📌 Technical Challenge Summary
+### ✅ What Was Implemented
+1. **Refactored findAll Function (tasks.service.ts)**
+    - Improved the logic of the findAll service to ensure that the Task entity is fully serialized, including proper handling of the subtasks field.
+    - This change ensures that all task data, including deeply nested subtasks, is returned consistently via the API endpoint.
 
-Feel free to clarify anything by reaching out to the team.
+2. **Validation in App.tsx**
+    - Added a simple client-side validation to prevent the creation of tasks with an empty title.
+    - This enhances user experience by reducing invalid or empty task entries at the UI level.
 
+3. **UI Support for Nested Subtasks**
+    - Introduced intuitive UI controls allowing users to create subtasks under any existing task.
+    - The implementation supports unlimited levels of nested subtasks, enabling flexible and complex task hierarchies.
+
+### 🧠 Why These Changes Were Made
+- **Data Integrity**: Ensuring complete serialization of Task entities, including subtasks, provides a more robust and reliable API.
+
+- **User Experience**: Preventing empty task title submissions and enabling nested task creation improves both functionality and usability of the task management feature.
+
+- **Scalability**: Supporting unlimited nesting of subtasks allows the app to accommodate more complex project or workflow requirements.
+
+## 🛣️ Roadmap / Future Improvements
+With additional time and resources, the following improvements and enhancements are planned:
+
+1. **Frontend UI Enhancements**
+    - Integrate popular UI libraries or frameworks such as Material UI, Tailwind CSS, or Bootstrap to modernize the interface and improve consistency, responsiveness, and accessibility.
+
+2. **Improved Data Serialization Strategy**
+    - Replace the manual use of TaskRepository.find() with class-transformer to handle deep serialization directly at the entity level.
+    - Alternatively, implement a Read-Only DTO structure to separate data formatting concerns from business logic and improve maintainability.
+
+3. **Advanced Form Handling**
+    - Replace basic input handling with Formik for a more structured form management experience.
+    - Implement Yup for comprehensive form validation, providing clearer user feedback and reducing the chance of invalid data submission.
+
+4. **Real-Time Collaboration**
+    - Enable real-time updates using WebSockets or services like Firebase, allowing multiple users to collaborate on tasks and subtasks simultaneously.
+
+5. **User Authentication and Role-Based Access Control**
+    - Add secure user login and signup functionality with role-based permissions (e.g., admin, editor, viewer) to control task visibility and editing rights.
+  
+6. **Task Scheduling and Reminders**
+    - Integrate date pickers and notification systems to allow users to set due dates and receive reminders via email or in-app alerts.
+    - This helps users stay on track with deadlines and improves time management within the tool.
