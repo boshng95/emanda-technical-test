@@ -18,6 +18,28 @@ export class TasksService {
   }
 
   async findAll(): Promise<Task[]> {
-    return this.tasksRepo.find({ relations: ['subtasks', 'parent'] });
+    const buildTaskTree = async (task: Task): Promise<Task> => {
+      const subtasks = await this.tasksRepo.find({
+        where: { parent: { id: task.id } },
+        relations: ['parent'],
+      });
+  
+      task.subtasks = await Promise.all(subtasks.map(buildTaskTree));
+      return task;
+    };
+  
+    const rootTasks = await this.tasksRepo.find({
+      where: { parent: undefined },
+      relations: ['parent'],
+    });
+  
+    return Promise.all(rootTasks.map(buildTaskTree));
+  }
+
+  async findSubtasks(parentId: number): Promise<Task[]> {
+    return this.tasksRepo.find({
+      where: { parent: { id: parentId } },
+      relations: ['subtasks', 'parent']
+    });
   }
 }

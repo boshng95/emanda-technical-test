@@ -1,6 +1,6 @@
 export interface Task {
     id: number;
     title: string;
-    parentId?: number;
+    parent?: Task;
     subtasks?: Task[];
   }

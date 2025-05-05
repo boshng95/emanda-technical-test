@@ -4,7 +4,7 @@ import { TaskItem } from './TaskItem';
 
 export const TaskList: React.FC = () => {
   const { tasks } = useTasks();
-  const topLevelTasks = tasks.filter((task) => !task.parentId);
+  const topLevelTasks = tasks.filter((task) => !task.parent);
 
   return (
     <div>
